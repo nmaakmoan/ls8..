@@ -16,7 +16,7 @@ function App() {
 
     setMovies([
       ...movies,
-      { id: Date.now(), title, genre }
+      { id: Date.now(), title: title, genre: genre }
     ]);
 
     setTitle("");
@@ -37,7 +37,7 @@ function App() {
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="Поиск фильма..."
+        placeholder="Поиск фильма"
       />
 
       <br /><br />
@@ -58,19 +58,15 @@ function App() {
 
       <button onClick={addMovie}>Добавить</button>
 
-      {filteredMovies.length > 0 ? (
-        filteredMovies.map((movie) => (
-          <div key={movie.id}>
-            <h2>{movie.title}</h2>
-            <p>Жанр: {movie.genre}</p>
-            <button onClick={() => deleteMovie(movie.id)}>
-              Удалить
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>Фильм не найден</p>
-      )}
+      {filteredMovies.map((movie) => (
+        <div key={movie.id}>
+          <h2>{movie.title}</h2>
+          <p>Жанр: {movie.genre}</p>
+          <button onClick={() => deleteMovie(movie.id)}>Удалить</button>
+        </div>
+      ))}
+
+      {filteredMovies.length === 0 && <p>Фильм не найден</p>}
     </div>
   );
 }
